@@ -7,6 +7,8 @@ navbar:
     href: index.html
   - text: pipeline-scRNA-analysis
     href: pipeline-scRNA-analysis.html
+  - text: pipelin-ATAC-seq-analysis
+    href: pipelin-ATAC-seq-analysis.html
   right:
   - icon: fa-github
     text: Source code
