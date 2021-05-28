@@ -1,0 +1,8 @@
+---
+title: "ATAC-seq-analysis"
+author: "WangRong423"
+date: "2021-05-28"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
