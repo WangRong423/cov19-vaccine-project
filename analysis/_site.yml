@@ -1,14 +1,16 @@
-name: "cov19-vaccine-project"
+name: cov19-vaccine-project
 output_dir: ../docs
 navbar:
-  title: "cov19-vaccine-project"
+  title: cov19-vaccine-project
   left:
   - text: Home
     href: index.html
-  - text: About
-    href: about.html
-  - text: License
-    href: license.html
+  - text: pipeline-scRNA-analysis
+    href: pipeline-scRNA-analysis.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/WangRong423/cov19-vaccine-project
 output:
   workflowr::wflow_html:
     toc: yes
