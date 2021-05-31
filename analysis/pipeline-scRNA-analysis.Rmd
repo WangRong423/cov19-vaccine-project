@@ -11,12 +11,12 @@ editor_options:
 ##  样本说明
 * sample1：SecondVaccination-14day
 * sample2：SecondVaccination-0day
-* sample3：healthy
+* sample3：healthy,male
 ## overview of the single-cell RNA-seq data
 
 ![ ](1.png)
-# data preprocessing
-## data quality
+#  data preprocessing
+##  data quality
 ![ ](QC1.png)
 ![ ](QC2.png)
 ![ ](QC3.png)
