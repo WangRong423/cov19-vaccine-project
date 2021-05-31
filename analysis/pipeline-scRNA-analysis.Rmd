@@ -15,8 +15,8 @@ editor_options:
 ## overview of the single-cell RNA-seq data
 
 ![ ](1.png)
-#  data preprocessing
-##  data quality
+# data preprocessing
+## data quality
 ![ ](QC1.png)
 ![ ](QC2.png)
 ![ ](QC3.png)
