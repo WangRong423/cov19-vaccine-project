@@ -9,12 +9,12 @@ editor_options:
 
 #  scRNA-analysis-pipeline
 ##  样本说明
-* sample1：SecondVaccination-14day
-* sample2：SecondVaccination-0day
+* sample1：SecondVaccination-14day,female
+* sample2：SecondVaccination-0day,female
 * sample3：healthy,male
+
 ## overview of the single-cell RNA-seq data
 
-![ ](1.png)
 #  data preprocessing
 ##  data quality
 ![ ](QC1.png)
