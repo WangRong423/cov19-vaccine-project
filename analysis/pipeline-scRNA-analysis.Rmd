@@ -7,18 +7,21 @@ editor_options:
   chunk_output_type: console
 ---
 
-# scRNA-analysis-pipeline
-样本说明
+#  scRNA-analysis-pipeline
+##  样本说明
 * sample1：SecondVaccination-14day
 * sample2：SecondVaccination-0day
 * sample3：healthy
-# data preprocessing
-## data quality
+## overview of the single-cell RNA-seq data
+
+![ ](1.png)
+#  data preprocessing
+##  data quality
 ![ ](QC1.png)
 ![ ](QC2.png)
 ![ ](QC3.png)
 
-## data quality control
+##  data quality control
 genes expressed at a proportion >0.1% of the data(why 0.1%) and cells with >200 genes detected were selected for further analyses. 
 Low-quality cells were removed if they met the following criteria: 
 (1) <800 unique molecular identifiers (UMIs);
@@ -92,10 +95,9 @@ saveRDS(sample_3,file="/home/caslx/Database/COVID_19_Data/wr_scRNA/sample_3.rds"
 # sample intergration
 
 ![before](merge.png)
-![after](batch removal.png)
+![after](batch.removal.png)
 first,we identified 2,000 features with high cell-to-cell variation . 
-Second, we identified ‘anchors’ between individual datasetswith the FindIntegrationAnchors function and inputted these anchors into the
-IntegrateData function to create a batch-corrected expression matrix of all cells.
+Second, we identified ‘anchors’ between individual datasetswith the FindIntegrationAnchors function and inputted these anchors into the IntegrateData function to create a batch-corrected expression matrix of all cells.
 
 <details>
   <summary>code</summary>
