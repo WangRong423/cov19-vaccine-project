@@ -12,8 +12,7 @@ editor_options:
 * sample1：SecondVaccination-14day,female
 * sample2：SecondVaccination-0day,female
 * sample3：healthy,male
-
-## overview of the single-cell RNA-seq data
+       
 
 #  data preprocessing
 ##  data quality
@@ -95,7 +94,10 @@ saveRDS(sample_3,file="/home/caslx/Database/COVID_19_Data/wr_scRNA/sample_3.rds"
 # sample intergration
 
 ![before](merge.png)
-![after](batch.removal.png)
+Clustering of three samples through simple merge shows that sample3 and sample1, and sample2 has[batch effect](https://www.nature.com/articles/nrg2825.pdf)
+
+
+![after](batch.removal.png)  
 first,we identified 2,000 features with high cell-to-cell variation . 
 Second, we identified ‘anchors’ between individual datasetswith the FindIntegrationAnchors function and inputted these anchors into the IntegrateData function to create a batch-corrected expression matrix of all cells.
 
