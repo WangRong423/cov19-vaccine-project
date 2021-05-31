@@ -16,15 +16,15 @@ editor_options:
 
 #  data preprocessing
 ##  data quality
-![ ](QC1.png)
-![ ](QC2.png)
-![ ](QC3.png)
+![sample1 ](QC1.png)
+![sample2](QC2.png)
+![sample3](QC3.png)
 
 ##  data quality control
 genes expressed at a proportion >0.1% of the data(why 0.1%) and cells with >200 genes detected were selected for further analyses. 
 Low-quality cells were removed if they met the following criteria: 
-(1) <800 unique molecular identifiers (UMIs);
-(2) <200 genes; 
+(1) >25000,<800  unique molecular identifiers (UMIs);
+(2) >5000,<200 genes; 
 (3) >10% ratio derived from the mitochondrial genome.
 ![ ](QC-chart.png)
 <details>
@@ -93,8 +93,8 @@ saveRDS(sample_3,file="/home/caslx/Database/COVID_19_Data/wr_scRNA/sample_3.rds"
 </details>
 # sample intergration
 
-![before](merge.png)
-Clustering of three samples through simple merge shows that sample3 and sample1, and sample2 has[batch effect](https://www.nature.com/articles/nrg2825.pdf)
+![before](merge.png)  
+  Clustering of three samples through simple merge shows that sample3 and sample1, and sample2 has[batch effect](https://www.nature.com/articles/nrg2825.pdf)
 
 
 ![after](batch.removal.png)  
