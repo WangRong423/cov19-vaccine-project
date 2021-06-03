@@ -9,13 +9,9 @@ editor_options:
 #  data preprocessing
 ##  data quality control
 
-![ ](fragment1.png)
-![ ](fragment2.png)
-![ ](fragment3.png)
-
-![ ](TSS1.png)
-![ ](TSS2.png)
-![ ](TSS3.png)
+![ ](fragment.png)
+![ ](TSS.png)
+![ ](atac-qc.png)
   we filtered cells with less than 1,000unique fragments and enrichment at TSSs < 4.[ENCODE standards](https://www.encodeproject.org/atac-seq/)
   
 <details>
