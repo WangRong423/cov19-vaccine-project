@@ -1,0 +1,53 @@
+---
+title: "ATAC-seq-analysis"
+author: "WangRong423"
+date: "2021-05-28"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+#  data preprocessing
+##  data quality control
+
+![ ](fragment1.png)
+![ ](fragment2.png)
+![ ](fragment3.png)
+
+![ ](TSS1.png)
+![ ](TSS2.png)
+![ ](TSS3.png)
+  we filtered cells with less than 1,000unique fragments and enrichment at TSSs < 4.[ENCODE standards](https://www.encodeproject.org/atac-seq/)
+  
+<details>
+  <summary>code</summary>
+  <pre><code> 
+library(ArchR)
+addArchRThreads(threads = 32)
+addArchRGenome("hg38")
+input <- list.files(path = "/home/caslx/Database/COVID_19_Data/3SampleData_0512/wr_scRNA+atac/acat", pattern = "gz$") 
+names <- unlist(lapply(input , function(x){
+  name <- unlist(strsplit(x, "[_]"))
+  name <- name[1]
+}))
+input <- unlist(lapply(input , function(x){
+  x <- file.path("/home/caslx/Database/COVID_19_Data/3SampleData_0512/wr_scRNA+atac/acat", x)
+}))
+names(input ) <- names
+ArrowFiles <- createArrowFiles(inputFiles = input,sampleNames = names(input),filterTSS = 4,filterFrags = 1000,addTileMat = TRUE,addGeneScoreMat = TRUE)
+ 
+doubscore <- addDoubletScores(input=ArrowFiles,k=10,knnMethod='UMAP',LSIMethod=1,threads=1)
+archr_obj <- ArchRProject(ArrowFiles = ArrowFiles,outputDirectory = “/home/rongwang/results/pipline_results/atac_pipeline”,copyArrows = TRUE)
+getAvailableMatrices(archr_obj)
+
+
+png("TSS.png")
+plot(p)
+p1 <- plotGroups(ArchRProj = archr_obj,groupBy = "Sample",colorBy = "cellColData",name = "TSSEnrichment",plotAs = "ridges")
+plot(p1)
+dev.off()
+png("fragment.png")
+p2 <- plotFragmentSizes(ArchRProj = archr_obj)
+plot(p2)
+dev.off()
+</code></pre>
+</details>
