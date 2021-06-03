@@ -9,9 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="WangRong423" />
 
+<meta name="date" content="2021-05-28" />
 
-<title>Home</title>
+<title>ATAC-seq-analysis</title>
 
 <script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -29,6 +31,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -230,6 +235,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -237,6 +305,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -280,7 +358,9 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Home</h1>
+<h1 class="title toc-ignore">ATAC-seq-analysis</h1>
+<h4 class="author">WangRong423</h4>
+<h4 class="date">2021-05-28</h4>
 
 </div>
 
@@ -370,7 +450,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML (<code>docs/index.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/pipeline-ATAC-seq_analysis.Rmd</code>) and HTML (<code>docs/pipeline-ATAC-seq_analysis.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -396,206 +476,19 @@ Message
 <tbody>
 <tr>
 <td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/WangRong423/cov19-vaccine-project/c7a8766fe4a77f8e209bd2d8307f7e5aebf782df/docs/index.html" target="_blank">c7a8766</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-31
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/WangRong423/cov19-vaccine-project/856f2fc59a260957c20c1fec5ad22451b3288f7e/docs/index.html" target="_blank">856f2fc</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-31
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/WangRong423/cov19-vaccine-project/9a633abb658312b6c65b46c8cb5903975e3c1fb3/docs/index.html" target="_blank">9a633ab</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-31
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/WangRong423/cov19-vaccine-project/a28173628ffad2ebba377d03813be0bdddca1e83/docs/index.html" target="_blank">a281736</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-31
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/WangRong423/cov19-vaccine-project/9fdac31c9302afdc383ab29ae4c45dd3e46b0912/docs/index.html" target="_blank">9fdac31</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-31
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/WangRong423/cov19-vaccine-project/441a34710260cdf2d1d1434538a4d7f81c0da683/docs/index.html" target="_blank">441a347</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-31
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/WangRong423/cov19-vaccine-project/5cff1663556540132fec9460582550bfc144475d/docs/index.html" target="_blank">5cff166</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-31
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/WangRong423/cov19-vaccine-project/6d0702216f9ea900bf964cf8a10752cc3d1c3205/docs/index.html" target="_blank">6d07022</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-28
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/WangRong423/cov19-vaccine-project/9ac3a5714af5fd899e18d58ee188dfa7b1b51b3f/docs/index.html" target="_blank">9ac3a57</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-28
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/WangRong423/cov19-vaccine-project/f875f11f6a3725371c6e6ec29308ab0bd8b74449/docs/index.html" target="_blank">f875f11</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-28
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
 Rmd
 </td>
 <td>
-<a href="https://github.com/WangRong423/cov19-vaccine-project/blob/dc9420ef282015dbeaff5ad99730d3c881cdec8d/analysis/index.Rmd" target="_blank">dc9420e</a>
+<a href="https://github.com/WangRong423/cov19-vaccine-project/blob/0b3d2e1b6c455151da53693d0200e5fd805e6305/analysis/pipeline-ATAC-seq_analysis.Rmd" target="_blank">0b3d2e1</a>
 </td>
 <td>
 WangRong423
 </td>
 <td>
-2021-05-28
+2021-06-03
 </td>
 <td>
-Publish the initial files for cov19-vaccine-project
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/WangRong423/cov19-vaccine-project/blob/9947b614f075e7910508247ad7bc7b191fbe2f32/analysis/index.Rmd" target="_blank">9947b61</a>
-</td>
-<td>
-WangRong423
-</td>
-<td>
-2021-05-28
-</td>
-<td>
-Start workflowr project.
+wflow_publish(c(“analysis/index.Rmd”, “analysis/pipeline-ATAC-seq_analysis.Rmd”))
 </td>
 </tr>
 </tbody>
@@ -605,9 +498,49 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<p>Welcome to our research website.</p>
-<p>This website host the data analysis result of the Study on changes of immune cells at different time points after inoculation of COVID-19 vaccine in different people.</p>
-<p>At this stage, the analysis process is still being set up.I will share the latest analysis results here in real time, welcome everyone to discuss and put forward comments.</p>
+<div id="data-preprocessing" class="section level1">
+<h1>data preprocessing</h1>
+<div id="data-quality-control" class="section level2">
+<h2>data quality control</h2>
+<p><img src="fragment1.png" /> <img src="fragment2.png" /> <img src="fragment3.png" /></p>
+<p><img src="TSS1.png" /> <img src="TSS2.png" /> <img src="TSS3.png" /> we filtered cells with less than 1,000unique fragments and enrichment at TSSs &lt; 4.<a href="https://www.encodeproject.org/atac-seq/">ENCODE standards</a></p>
+<details>
+<summary>
+code
+</summary>
+<pre><code> 
+library(ArchR)
+addArchRThreads(threads = 32)
+addArchRGenome("hg38")
+input <- list.files(path = "/home/caslx/Database/COVID_19_Data/3SampleData_0512/wr_scRNA+atac/acat", pattern = "gz$") 
+names <- unlist(lapply(input , function(x){
+  name <- unlist(strsplit(x, "[_]"))
+  name <- name[1]
+}))
+input <- unlist(lapply(input , function(x){
+  x <- file.path("/home/caslx/Database/COVID_19_Data/3SampleData_0512/wr_scRNA+atac/acat", x)
+}))
+names(input ) <- names
+ArrowFiles <- createArrowFiles(inputFiles = input,sampleNames = names(input),filterTSS = 4,filterFrags = 1000,addTileMat = TRUE,addGeneScoreMat = TRUE)
+ 
+doubscore <- addDoubletScores(input=ArrowFiles,k=10,knnMethod='UMAP',LSIMethod=1,threads=1)
+archr_obj <- ArchRProject(ArrowFiles = ArrowFiles,outputDirectory = “/home/rongwang/results/pipline_results/atac_pipeline”,copyArrows = TRUE)
+getAvailableMatrices(archr_obj)
+
+
+png("TSS.png")
+plot(p)
+p1 <- plotGroups(ArchRProj = archr_obj,groupBy = "Sample",colorBy = "cellColData",name = "TSSEnrichment",plotAs = "ridges")
+plot(p1)
+dev.off()
+png("fragment.png")
+p2 <- plotFragmentSizes(ArchRProj = archr_obj)
+plot(p2)
+dev.off()
+</code></pre>
+</details>
+</div>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
@@ -625,6 +558,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -657,6 +592,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
