@@ -1,0 +1,21 @@
+name: cov19-vaccine-project
+output_dir: ../docs
+navbar:
+  title: cov19-vaccine-project
+  left:
+  - text: Home
+    href: index.html
+  - text: pipeline-scRNA-analysis
+    href: pipeline-scRNA-analysis.html
+  - text: pipeline-ATAC-seq-analysis
+    href: pipeline-ATAC-seq_analysis.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/WangRong423/cov19-vaccine-project
+output:
+  workflowr::wflow_html:
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+    highlight: textmate
