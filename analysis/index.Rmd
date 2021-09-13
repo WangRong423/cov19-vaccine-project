@@ -14,6 +14,6 @@ This website host the data analysis result of the Study on changes of immune cel
 
 At this stage, the analysis process is still being set up.I will share the latest analysis results here in real time, welcome everyone to discuss and put forward comments.
 
-[Upstream_analysis](Upstream_analysis.html)
-[Transcriptome downstream analysis](Transcriptome downstream analysis.html)
+[Upstream_analysis](Upstream_analysis.html)  
+[Transcriptome downstream analysis](Transcriptome downstream analysis.html)  
 [chromatin accessibility analysis](chromatin accessibility analysis.html)
