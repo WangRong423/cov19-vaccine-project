@@ -1,0 +1,22 @@
+---
+title: "upstream_analysis"
+author: "WangRong423"
+date: '2021-09-10'
+output:
+  html_document: default
+  workflowr::wflow_html: default
+---
+##  样本说明
+*  individual ：M1，M2,M3,M5 all male
+*  timepoint  :
+![timepoint ](timepoint.png)
+##  QC table
+
+```{r ,echo=FALSE}
+library(knitr)
+library(rmarkdown)
+
+test<-read.csv('/home/rongwang/SAMPLE_INFORMATION.csv',sep = ",",header = F)
+
+kable(test)
+```
