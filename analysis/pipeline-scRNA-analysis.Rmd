@@ -1,0 +1,174 @@
+---
+title: "scRNA-analysis"
+author: "WangRong423"
+date: "2021-05-28"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+#  scRNA-analysis-pipeline
+##  样本说明
+* sample1：SecondVaccination-14day,female
+* sample2：SecondVaccination-0day,female
+* sample3：healthy,male
+       
+
+#  data preprocessing
+##  data quality
+![sample1 ](QC1.png)
+![sample2](QC2.png)
+![sample3](QC3.png)
+
+##  data quality control
+genes expressed at a proportion >0.1% of the data(why 0.1%) and cells with >200 genes detected were selected for further analyses. 
+Low-quality cells were removed if they met the following criteria: 
+(1) >25000,<800  unique molecular identifiers (UMIs);
+(2) >5000,<200 genes; 
+(3) >10% ratio derived from the mitochondrial genome.
+![ ](QC-chart.png)
+<details>
+  <summary>code</summary>
+  <pre><code> 
+library(Seurat)
+library(cowplot)
+library(ggplot2)
+library(Matrix)
+library(dplyr)
+library(umap)
+sample1 <- Read10X(data.dir = "/home/caslx/Database/COVID_19_Data/3SampleData_0512/sample1/outs/filtered_feature_bc_matrix/")
+dim(sample1$`Gene Expression`)
+sample1 <- CreateSeuratObject(counts = sample1$`Gene Expression`,min.cells = 10, min.features = 200, project = "sample1")
+dim(sample1)
+gene1_1 <- sample1$nFeature_RNA
+counts1_1<- sample1$nCount_RNA
+summary(gene1_1)
+summary(counts1_1)
+sample1[["percent.mt"]] <- PercentageFeatureSet(sample1, pattern = "^MT-")
+pdf(file="/home/rongwang/results/pipline_results/2021.5.20.pdf")
+VlnPlot(sample1, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+sample_1 <- subset(sample1, subset = nFeature_RNA > 200 & nFeature_RNA < 5000 & nCount_RNA > 800 & nCount_RNA < 25000 & percent.mt <10)
+gene1_2 <- sample_1$nFeature_RNA
+counts1_2<-sample_1T$nCount_RNA
+summary(gene1_2)
+summary(counts1_2)
+saveRDS(sample_1,file="/home/caslx/Database/COVID_19_Data/wr_scRNA/sample_1.rds")
+
+sample2 <- Read10X(data.dir = "/home/caslx/Database/COVID_19_Data/3SampleData_0512/sample2/outs/filtered_feature_bc_matrix/")
+dim(sample2$`Gene Expression`)
+sample2 <- CreateSeuratObject(counts = sample2$`Gene Expression`, min.cells = 7, min.features = 200,project = "sample2")
+dim(sample2)
+gene2_1 <- sample2$nFeature_RNA
+counts2_1<- sample2$nCount_RNA
+summary(gene2_1)
+summary(counts2_1)
+sample2[["percent.mt"]] <- PercentageFeatureSet(sample2, pattern = "^MT-")
+VlnPlot(sample2, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+sample_2 <- subset(sample2, subset = nFeature_RNA > 200 & nFeature_RNA < 5000 & nCount_RNA > 800 & nCount_RNA < 25000 & percent.mt <10)
+gene2_2 <- sample_2$nFeature_RNA
+counts2_2<-sample_2T$nCount_RNA
+summary(gene2_2)
+summary(counts2_2)
+saveRDS(sample_2,file="/home/caslx/Database/COVID_19_Data/wr_scRNA/sample_2.rds")
+
+sample3 <- Read10X(data.dir = "/home/caslx/Database/COVID_19_Data/3SampleData_0512/sample3/outs/filtered_feature_bc_matrix/",gene.column = 2,cell.column = 1)
+dim(sample3$`Gene Expression`)
+sample3 <- CreateSeuratObject(counts =  sample3$`Gene Expression, min.cells = 3, min.features = 200,project = "sample3")
+dim(sample3)
+gene3_1 <- sample3$nFeature_RNA
+counts3_1<- sample3$nCount_RNA
+summary(gene3_1)
+summary(counts3_1)
+sample3[["percent.mt"]] <- PercentageFeatureSet(sample3, pattern = "^MT-")
+VlnPlot(sample3, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+dev.off ()
+sample3_2 <- subset(sample3, subset = nFeature_RNA > 200 & nFeature_RNA < 5000 & nCount_RNA > 800 & nCount_RNA < 25000 & percent.mt <30)
+gene3_2 <- sample_3$nFeature_RNA
+counts2_2<-sample_3T$nCount_RNA
+summary(gene3_2)
+summary(counts3_2)
+saveRDS(sample_3,file="/home/caslx/Database/COVID_19_Data/wr_scRNA/sample_3.rds")
+
+ </code></pre>
+</details>
+# sample intergration
+
+![before](merge.png)  
+  Clustering of three samples through simple merge shows that sample3 and sample1, and sample2 has[batch effect](https://www.nature.com/articles/nrg2825.pdf)
+
+
+![after](batch.removal.png)  
+first,we identified 2,000 features with high cell-to-cell variation . 
+Second, we identified ‘anchors’ between individual datasetswith the FindIntegrationAnchors function and inputted these anchors into the IntegrateData function to create a batch-corrected expression matrix of all cells.
+
+<details>
+  <summary>code</summary>
+  <pre><code> 
+library(Seurat)
+library(cowplot)
+library(ggplot2)
+library(Matrix)
+library(dplyr)
+library(umap)
+mymerg<-merge(x=sample1,y=sample2,sample3)
+mymerg <- NormalizeData(mymerg, normalization.method = "LogNormalize", scale.factor = 10000)
+mymerg <- FindVariableFeatures(mymerg, selection.method = "vst", nfeatures = 2000)
+mymerg <- ScaleData(mymerg,features=VariableFeatures(mymerg)) 
+mymerg <- RunPCA(mymerg, features = VariableFeatures(object = mymerg))
+mymerg <- FindNeighbors(mymerg, dims = 1:20)
+mymerg <- FindClusters(mymerg, resolution = 0.5)
+mymerg <- RunUMAP(mymerg, dims = 1:20)
+mymerg <- RunTSNE(mymerg, dims = 1:20)
+pdf(file="/home/rongwang/results/pipline_results/2021.5.20.umap.pdf")
+DimPlot(mymerg, reduction = "umap",label = TRUE,group.by="orig.ident")+ggtitle("merge")
+dev.off()
+
+mymerg<-merge(x=sample_1,y=c(sample_2,sample_3))
+mymerg
+sample.list <- sample.list[c("sample1", "sample2", "sample3")]
+for (i in 1:length(sample.list)) {
+  sample.list[[i]] <- NormalizeData(sample.list[[i]], verbose = FALSE)
+  sample.list[[i]] <- FindVariableFeatures(sample.list[[i]], selection.method = "vst",  nfeatures = 2000, verbose = FALSE)
+}
+sample123_Anchors <- FindIntegrationAnchors(object.list = list(sample_1, sample_2,sample_3), dims = 1:50)
+sample123_integrated <- IntegrateData(anchorset = sample123_Anchors, dims = 1:50)
+head(sample123_integrated@meta.data)
+
+DefaultAssay(sample123_integrated) <- "integrated"
+   
+pdf(file = "/home/rongwang/results/pipline_results/2021.5.23_sample123_integrated_1.pdf")
+sample123_integrated <- ScaleData(sample123_integrated, verbose = FALSE)
+sample123_integrated <- RunPCA(sample123_integrated, npcs = 50, verbose = FALSE)
+ElbowPlot(object =sample123_integrated , ndims = 50)
+dev.off ()
+
+pdf(file = "/home/rongwang/results/pipline_results/2021.5.23_sample123_integrated_sample1123_2.pdf")
+sample123_integrated <- FindNeighbors(sample123_integrated, reduction = "pca", dims = 1:20)
+sample123_integrated <- FindClusters(sample123_integrated, resolution = 0.3)
+sample123_integrated <- RunUMAP(sample123_integrated, reduction = "pca", dims = 1:20)
+DimPlot(sample123_integrated, reduction = "umap", group.by = "orig.ident")+ggtitle("batch effect removal")
+DimPlot(sample123_integrated, reduction = "umap", label = TRUE)
+  </code></pre>
+</details>
+
+# dimensionality reduction and cell-type annotation
+<details>
+  <summary>code</summary>
+  <pre><code> 
+  
+  </code></pre>
+</details>
+# DEG identification and differential expression analysis
+<details>
+  <summary>code</summary>
+  <pre><code> 
+
+</code></pre>
+</details>
+#   gene co-expression
+<details>
+  <summary>code</summary>
+  <pre><code> 
+
+</code></pre>
+</details>
